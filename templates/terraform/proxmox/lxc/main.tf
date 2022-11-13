@@ -4,7 +4,7 @@ resource "proxmox_lxc" "lxcs" {
   hostname = local.hw.name[count.index]
   cores = local.hw.cpu[count.index]
   memory = local.hw.memory[count.index]
-  swap = local.hw.swap[count.index] ? local.hw.swap[count.index] : 512
+  swap = try(local.hw.swap[count.index], 512)
 
   target_node = "proxmox"
   ostemplate = "local:vztmpl/${local.template.name}-${local.template.version}-standard_${local.template.version}-1_amd64.tar.gz"
@@ -14,10 +14,12 @@ resource "proxmox_lxc" "lxcs" {
     %{ endfor }
   EOF
 
+
+
   unprivileged = local.hw.unprivileged[count.index] ? true : false
 
-  onboot = local.config.onboot[count.index] ? true : false
-  start = local.config.start[count.index] ? true : false
+  onboot = try(local.config.onboot[count.index], false)
+  start = try(local.config.start[count.index], false)
 
   rootfs {
     storage = local.hw.disk[count.index].storage
@@ -25,8 +27,8 @@ resource "proxmox_lxc" "lxcs" {
   }
 
   network {
-    name   = local.hw.network.name[count.index]
-    bridge = local.hw.network.bridge[count.index]
-    ip     = local.hw.network.ip[count.index]
+    name   = try(local.hw.network.name[count.index], "eth0")
+    bridge = try(local.hw.network.bridge[count.index], "vmbr0")
+    ip     = try(local.hw.network.ip[count.index], "dhcp")
   }
 }
