@@ -1,4 +1,6 @@
-resource "proxmox_lxc" "lxc" {
+resource "proxmox_lxc" "lxcs" {
+  count = local.hw.count
+
   hostname = local.hw.name
   cores = local.hw.cpu
   memory = local.hw.memory
@@ -23,8 +25,8 @@ resource "proxmox_lxc" "lxc" {
   }
 
   network {
-    name   = "eth0"
-    bridge = "vmbr0"
-    ip     = "dhcp"
+    name   = local.hw.network.name
+    bridge = local.hw.network.bridge
+    ip     = local.hw.network.ip[count.index]
   }
 }

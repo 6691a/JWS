@@ -3,14 +3,21 @@ template:
   version: 20.04
 
 hw:
-  name: "test_lxc"
+  count: 2
+  name: test-lxc
   cpu: 2
   memory: 2048
   swap: 512
+  unprivileged: true
   disk:
     storage: storage01
-    size: 20G
-  unprivileged: true
+    size: 8G
+  network:
+    name: eth0
+    bridge: vmbr0
+    ip:
+     - dhcp
+     - dhcp
 
 config:
   onboot: true
