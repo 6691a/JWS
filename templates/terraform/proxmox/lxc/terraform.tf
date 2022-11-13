@@ -3,6 +3,8 @@
 ###################################################
 locals {
   template = yamldecode(file(var.config_file)).template
+  config = yamldecode(file(var.config_file)).config
+  ssh = yamldecode(file(var.config_file)).ssh
 }
 
 variable "proxmox_api_url" {
@@ -16,11 +18,6 @@ variable "proxmox_api_token_id" {
 
 variable "proxmox_api_token_secret" {
   type = string
-  sensitive = true
-}
-
-variable "ssh_public_keys" {
-  type = list(string)
   sensitive = true
 }
 ###################################################

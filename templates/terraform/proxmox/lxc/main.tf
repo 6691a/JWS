@@ -8,7 +8,7 @@ resource "proxmox_lxc" "lxc" {
 
   ostemplate = "local:vztmpl/${local.template.name}-${local.template.version}-standard_${local.template.version}-1_amd64.tar.gz"
   ssh_public_keys = <<EOF
-    ${var.ssh_public_keys}
+    ${local.ssh}
   EOF
   unprivileged = true
 
