@@ -6,7 +6,6 @@ locals {
   template = yamldecode(file(var.config_file)).template
   config = yamldecode(file(var.config_file)).config
   ssh = yamldecode(file(var.config_file)).ssh
-  disk = yamldecode(file(var.config_file)).disk
 }
 
 variable "proxmox_api_url" {

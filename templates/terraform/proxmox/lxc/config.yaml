@@ -12,7 +12,6 @@ hw:
     size: 20G
   unprivileged: true
 
-
 config:
   onboot: true
   start: true
