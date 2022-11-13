@@ -4,24 +4,40 @@ template:
 
 hw:
   count: 2
-  name: test-lxc
-  cpu: 2
-  memory: 2048
-  swap: 512
-  unprivileged: true
+  name:
+    - test-lxc1
+    - test-lxc2
+  cpu:
+    - 2
+    - 1
+  memory:
+    - 2048
+    - 1024
+  swap:
+    - 512
+    - 512
+  unprivileged:
+    - true
+    - true
   disk:
-    storage: storage01
-    size: 8G
+    - storage: storage01
+      size: 8G
+    - storage: storage01
+      size: 16G
   network:
-    name: eth0
-    bridge: vmbr0
+    name:
+      - eth0
+    bridge:
+      - vmbr0
     ip:
      - dhcp
      - dhcp
 
 config:
-  onboot: true
-  start: true
+  onboot:
+    - true
+  start:
+    - true
 
 ssh:
   - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDHzjG8zyRX4wlSU+tROHW7P9XoHtUeX9nRR0x3SttVENOHz8eGybYZqzI5pGMzU6J0T/nhjVx1+wZ4VmYWudtZRMlpmTuJrFF6Ky0UcyMOnubP+EYuT4iLIITYHBhPdaQ3vjYkiqs9EbTfPvdbf8n4w44rgu40uBLGXqAKIpqn3ul+8uCsWr0mArqUo5fJs/P4WHfgESROXAqNMhS/RuXg0M5esj3TLzdiWWeUmbgTn0XldQ2exqnFn+Iy3YhhjdafvUM+5byFkKCOGKfuf7KrhNH2yrOI4CCpfaiK74apZERM2Trca+seEmP179FFQhid04vSIc+oRT1VQPgVTv44+zxSBSDyZG07k3bZ67cXAN/6jOzkd5OVAuG3vDtVEV4usQ4SAonhC28eyds+5XY8WODtRZTtgwgJdUxd1vXQ4tmdL/x3uRL4/xZ4YrWIx/wH15tXqk2WvKDwSHRKvizpdr5NBtUjplTn4Nb8lgNw9LVUerur0CwaFcWXyPbVx+E= root@master"
