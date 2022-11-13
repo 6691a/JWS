@@ -1,25 +1,25 @@
 resource "proxmox_lxc" "lxc" {
-  hostname = "lxc"
-  cores = 1
-  memory = "1024"
-  swap = "512"
-  target_node = "proxmox"
-  pool = "terraform_test"
+  hostname = local.hw.name
+  cores = local.hw.cpu
+  memory = local.hw.memory
+  swap = local.hw.swap
 
+  target_node = "proxmox"
   ostemplate = "local:vztmpl/${local.template.name}-${local.template.version}-standard_${local.template.version}-1_amd64.tar.gz"
   ssh_public_keys = <<EOF
     %{ for s in local.ssh}
       ${ s }
     %{ endfor }
   EOF
-  unprivileged = true
 
-  onboot       = true
-  start        = true
+  unprivileged = local.hw.unprivileged ? true : false
+
+  onboot = local.config.onboot
+  start = local.config.start
 
   rootfs {
-    storage = "local-lvm"
-    size    = "8G"
+    storage = local.hw.disk.storage
+    size    = local.hw.disk.size
   }
 
   network {

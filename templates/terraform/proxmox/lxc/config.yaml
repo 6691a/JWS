@@ -2,9 +2,16 @@ template:
   name: ubuntu
   version: 20.04
 
-disk:
-  storage: storage01
-  size: 20G
+hw:
+  name: "test_lxc"
+  cpu: 2
+  memory: 2048
+  swap: 512
+  disk:
+    storage: storage01
+    size: 20G
+  unprivileged: true
+
 
 config:
   onboot: true
