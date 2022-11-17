@@ -30,3 +30,7 @@ resource "proxmox_lxc" "lxcs" {
     ip     = try(local.hw.network.ip[count.index], "dhcp")
   }
 }
+
+resource "local_file" "ansible_inventory" {
+  content = templatefile("./templates/inventory.temp")
+}
