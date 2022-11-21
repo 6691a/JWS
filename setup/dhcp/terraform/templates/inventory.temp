@@ -1,0 +1,7 @@
+[public]
+
+%{ for index in ~}
+%{ endfor ~}
+
+
+[private]

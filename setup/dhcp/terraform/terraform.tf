@@ -2,7 +2,8 @@
 # Variables
 ###################################################
 locals {
-  hw =  yamldecode(file(var.config_file)).hw
+  public =  yamldecode(file(var.config_file)).hw.public
+  private = yamldecode(file(var.config_file)).hw.private
   template = yamldecode(file(var.config_file)).template
   config = yamldecode(file(var.config_file)).config
   ssh = yamldecode(file(var.config_file)).ssh

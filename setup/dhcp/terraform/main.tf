@@ -1,4 +1,4 @@
-resource "proxmox_lxc" "lxcs" {
+resource "proxmox_lxc" "public" {
   count = local.hw.count
 
   hostname = local.hw.name[count.index]
@@ -31,6 +31,6 @@ resource "proxmox_lxc" "lxcs" {
   }
 }
 
-resource "local_file" "ansible_inventory" {
-  content = templatefile("./templates/inventory.temp")
-}
+# resource "local_file" "ansible_inventory" {
+#   content = templatefile("./templates/inventory.temp")
+# }
