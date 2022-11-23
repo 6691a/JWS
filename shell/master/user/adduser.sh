@@ -1,4 +1,8 @@
 #!/bin/sh
+# $1: username
+
+# not variable -> make ssh key
+# $2: ssh-key 
 
 HOME_DIR=/home/$1
 
