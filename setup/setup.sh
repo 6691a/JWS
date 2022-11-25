@@ -1,5 +1,5 @@
 cat <<EOF >> ~/.bashrc
-export TF_VAR_FILE="~/jws/secret/credentials.tfvars"
+export TF_VAR_FILE="$HOME/jws/secret/credentials.tfvars"
 
 EOF
 

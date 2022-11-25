@@ -1,3 +1,4 @@
+
 resource "proxmox_lxc" "wire_guard" {
 
   hostname = local.hw.name
@@ -24,9 +25,9 @@ resource "proxmox_lxc" "wire_guard" {
   }
 
   network {
-    name   = try(local.hw.network.name[count.index], "eth0")
-    bridge = try(local.hw.network.bridge[count.index], "vmbr0")
-    ip     = try(local.hw.network.ip[count.index], "dhcp")
+    name   = try(local.hw.network.name, "eth0")
+    bridge = try(local.hw.network.bridge, "vmbr0")
+    ip     = try(local.hw.network.ip, "dhcp")
   }
 }
 

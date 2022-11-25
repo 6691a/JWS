@@ -39,6 +39,11 @@ terraform {
 ###################################################
 # Providers
 ###################################################
+module "proxmox_setting" {
+  source = "$TF_VAR_FILE"
+  version = "1.0.0"
+}
+
 provider "proxmox" {
   pm_api_url = var.proxmox_api_url
   pm_api_token_id = var.proxmox_api_token_id
