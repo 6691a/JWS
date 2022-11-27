@@ -5,8 +5,8 @@ locals {
   hw =  yamldecode(file(var.config_file)).hw
   disk = yamldecode(file(var.config_file)).disk
   network =  yamldecode(file(var.config_file)).network
+  system = yamldecode(file(var.config_file)).system
   template = yamldecode(file(var.config_file)).template
-  config = yamldecode(file(var.config_file)).config
   ssh = yamldecode(file(var.config_file)).ssh
 }
 
@@ -39,10 +39,10 @@ terraform {
 ###################################################
 # Providers
 ###################################################
-module "proxmox_setting" {
-  source = "$TF_VAR_FILE"
-  version = "1.0.0"
-}
+# module "proxmox_setting" {
+#   source = "$TF_VAR_FILE"
+#   version = "1.0.0"
+# }
 
 provider "proxmox" {
   pm_api_url = var.proxmox_api_url

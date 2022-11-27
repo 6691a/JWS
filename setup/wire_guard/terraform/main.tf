@@ -20,8 +20,8 @@ resource "proxmox_lxc" "wire_guard" {
   start = try(local.system.start, false)
 
   rootfs {
-    storage = local.hw.disk.storage
-    size    = local.hw.disk.size
+    storage = local.disk.storage
+    size    = local.disk.size
   }
 
   network {
