@@ -1,6 +1,0 @@
-[wire_guard]
-%{ for index in ~}
-%{}
-%{ endfor ~}
-
-
