@@ -1,4 +1,3 @@
-
 resource "proxmox_lxc" "wire_guard" {
 
   hostname = local.hw.name
@@ -8,6 +7,7 @@ resource "proxmox_lxc" "wire_guard" {
 
   target_node = "proxmox"
   ostemplate = "local:vztmpl/${local.template.name}-${local.template.version}-standard_${local.template.version}-1_amd64.tar.gz"
+  password = var.proxmox_root_password
   ssh_public_keys = <<EOF
     %{ for s in local.ssh}
       ${ s }
@@ -20,8 +20,8 @@ resource "proxmox_lxc" "wire_guard" {
   start = try(local.system.start, false)
 
   rootfs {
-    storage = local.disk.storage
-    size    = local.disk.size
+    storage = local.hw.disk.storage
+    size    = local.hw.disk.size
   }
 
   network {

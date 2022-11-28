@@ -23,6 +23,12 @@ variable "proxmox_api_token_secret" {
   type = string
   sensitive = true
 }
+
+variable "proxmox_root_password" {
+  type = string
+  default = ""
+  sensitive = true
+}
 ###################################################
 # Terrafrom
 ###################################################
