@@ -29,6 +29,7 @@ variable "proxmox_root_password" {
   default = ""
   sensitive = true
 }
+
 ###################################################
 # Terrafrom
 ###################################################

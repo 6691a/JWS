@@ -20,14 +20,14 @@ resource "proxmox_lxc" "wire_guard" {
   start = try(local.system.start, false)
 
   rootfs {
-    storage = local.hw.disk.storage
-    size    = local.hw.disk.size
+    storage = local.disk.storage
+    size    = local.disk.size
   }
 
   network {
-    name   = try(local.hw.network.name, "eth0")
-    bridge = try(local.hw.network.bridge, "vmbr0")
-    ip     = try(local.hw.network.ip, "dhcp")
+    name   = try(local.network.name, "eth0")
+    bridge = try(local.network.bridge, "vmbr0")
+    ip     = try(local.network.ip, "dhcp")
   }
 }
 
