@@ -12,14 +12,14 @@ func (h *testHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	mux := http.NewServeMux()
-	//r := mux.NewRouter()
+	//mux := http.NewServeMux()
+	//
+	//mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+	//	fmt.Fprintf(w, "<h1>Hello World</h1>")
+	//})
+	//
+	//mux.Handle("/test", &testHandler{})
 
-	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "<h1>Hello World</h1>")
-	})
-
-	mux.Handle("/test", &testHandler{})
-
-	http.ListenAndServe(":5000", mux)
+	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+	http.ListenAndServe(":8080", nil)
 }
