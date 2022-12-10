@@ -12,7 +12,8 @@ func (h *testHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	mux := http.NewServeMux()
+	setUp(proxmox)
+	//mux := http.NewServeMux()
 	//
 	//mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 	//	fmt.Fprintf(w, "<h1>Hello World</h1>")

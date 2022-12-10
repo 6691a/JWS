@@ -1,12 +1,23 @@
 package proxmox
 
-func NewConfig(apiUrl string, apiTokenId string, apiTokenSecret string, defaultPassword string) *Config {
-	return &Config{ApiUrl: apiUrl, ApiTokenId: apiTokenId, ApiTokenSecret: apiTokenSecret, DefaultPassword: defaultPassword}
+import "os"
+
+func NewConfig() *Config {
+	return &Config{
+		apiUrl:          os.Getenv("PROXMOX_API_URL"),
+		apiTokenId:      os.Getenv("PROXMOX_API_TOKEN_ID"),
+		apiTokenSecret:  os.Getenv("PROXMOX_API_TOKEN_SECRET"),
+		defaultPassword: os.Getenv("default_password"),
+	}
 }
 
 type Config struct {
-	ApiUrl          string
-	ApiTokenId      string
-	ApiTokenSecret  string
-	DefaultPassword string
+	apiUrl          string
+	apiTokenId      string
+	apiTokenSecret  string
+	defaultPassword string
+}
+
+func (c *Config) MakeCredentials() {
+
 }
